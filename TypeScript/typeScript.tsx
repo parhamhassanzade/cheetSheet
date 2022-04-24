@@ -71,3 +71,37 @@ interface G extends Z {
   f: string;
   h: number;
 } //?now interface G eztends from Z and have Z properties
+
+interface G extends Y {} //?combination of interface and type Y into G
+type X2 = G & {}; //?combination of interface and type G Into X2
+
+//? when we defin functional component in TS for set Type
+const buttonGlobal:React.FC =()=>{}  //? React.FC for functional component React.Node import or accept all of them
+
+//? for set type to state
+const [todo,setTodo]=useState<string>(" ") //? it accept every thing of type that i say in above
+
+//! if we have props and set type for props we cant use React.FC for that because its not assignable to react.fc
+//! and another reasun is props and parametrs are in Compatible
+
+//? we can set type for function  in 2 way:
+interface Props {
+  todo: string;
+  setTodo: React.Dispatch<React.SetStateAction<string>>;
+  handleAddTodos: (e: React.FormEvent) => void;
+}
+const Input:React.FC<Props> =()=>{} //? ....<props>.... -> its type or interface that we defin 
+const Input2 =({todo}:Props)=>{}
+
+//? cerate Array of interface or Type:
+
+interface todo{
+  id:number;
+  content:string;
+  idDone:boolean;
+}
+const [Todo,setTodo]=useState<todo[]>([])
+
+//?defin type for Ref
+const InputRef = useRef<HTMLInputElement>(null);
+//? for type of ref see what element that we want to set it to that and then set type for that 
